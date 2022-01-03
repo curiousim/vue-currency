@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <img alt="Exchange logo" src="../assets/exchange-logo.png" width="200px" />
     <CurrencyDropdown
       :value="this.$store.state.baseCurrency"
       label="Base currency"
@@ -13,17 +13,20 @@
       @currencySelected="setConvertValue"
       :filterOutValue="this.$store.state.baseCurrency"
     />
+    <InputWithConvertor v-if="this.$store.state.convertCurrency" />
   </div>
 </template>
 
 <script>
 import CurrencyDropdown from "@/components/CurrencyDropdown.vue";
+import InputWithConvertor from "@/components/InputWithConvertor.vue";
 // import store from "@/store";
 
 export default {
-  name: "Converter",
+  name: "Home",
   components: {
     CurrencyDropdown,
+    InputWithConvertor,
   },
   methods: {
     setBaseValue: function (value) {
@@ -36,7 +39,7 @@ export default {
   },
   created() {
     this.$store.dispatch("fetchRates");
-    console.log("Converter created");
+    console.log("rendered");
   },
 };
 </script>

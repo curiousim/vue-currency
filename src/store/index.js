@@ -180,6 +180,9 @@ export default new Vuex.Store({
       ZWL: 103.594282,
     },
   },
+  getters: {
+    getConversionRate: (state) => state.rates[state.convertCurrency],
+  },
   mutations: {
     setBaseCurrency(state, currency) {
       state.baseCurrency = currency;

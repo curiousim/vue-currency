@@ -10,6 +10,13 @@
 
 <style>
 #app {
+  margin: auto;
+  width: 350px;
+  height: 600px;
+  height: ;
+  padding: 10px 20px 10px 20px;
+  background-color: #e2e4e5;
+  border-radius: 5px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -18,15 +25,19 @@
 }
 
 #nav {
-  padding: 30px;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+  flex: 1;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #ff9811;
 }
 </style>
