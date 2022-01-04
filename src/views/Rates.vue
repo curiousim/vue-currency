@@ -1,5 +1,87 @@
 <template>
-  <div class="about">
-    <h1>Rates:</h1>
+  <div>
+    <h2 class="list-title">Rates for {{ baseRateName }}</h2>
+    <div class="overflow-scroll-gradient">
+      <ul class="list-container">
+        <li v-for="currency in listOfCurrencies" v-bind:key="currency.code">
+          <CurrencyListElement
+            :name="currency.name"
+            :code="currency.code"
+            :rate="rates[currency.code]"
+          />
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
+
+<script>
+import CurrencyListElement from "../components/CurrencyListElement.vue";
+import { CURRENCY_DESCRIPTION } from "../util/translation";
+
+export default {
+  name: "Rates",
+  components: {
+    CurrencyListElement,
+  },
+  data() {
+    return {
+      listOfCurrencies: CURRENCY_DESCRIPTION,
+      rates: this.$store.state.rates,
+    };
+  },
+  methods: {},
+  computed: {
+    baseRateName: function () {
+      return (
+        CURRENCY_DESCRIPTION.find(
+          (currency) => currency.code === this.$store.state.baseCurrency
+        ).name ?? ""
+      );
+    },
+  },
+};
+</script>
+
+<style scoped>
+.list-title {
+  font-size: 20px;
+  color: var(--dark-grey-blue);
+  margin: 5px 0;
+}
+
+.list-container {
+  height: 480px;
+  width: 100%;
+  overflow-y: scroll;
+  padding: 10px 0;
+}
+
+.overflow-scroll-gradient {
+  position: relative;
+}
+.overflow-scroll-gradient::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 20px;
+  background: linear-gradient(
+    var(--background-grey),
+    rgba(255, 255, 255, 0.001)
+  ); /* transparent keyword is broken in Safari */
+}
+.overflow-scroll-gradient::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  height: 25px;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.001),
+    var(--background-grey)
+  ); /* transparent keyword is broken in Safari */
+}
+</style>

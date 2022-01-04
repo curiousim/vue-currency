@@ -1,6 +1,6 @@
 <template>
   <div class="dropdown-container">
-    <div>{{ label }}</div>
+    <label class="dropdown-label">{{ label }}</label>
     <VueSelect
       :value="value"
       @input="handleSelect"
@@ -15,7 +15,7 @@
 <script>
 import VueSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
-import { CURRENCY_DESCRIPTION } from "../store/translation";
+import { CURRENCY_DESCRIPTION } from "../util/translation";
 
 export default {
   name: "CurrencyDropdown",
@@ -48,28 +48,35 @@ export default {
 <style>
 .dropdown-container {
   margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-label {
+  color: var(--dark-grey-blue);
+  margin-bottom: 5px;
 }
 
 .style-chooser .vs__search::placeholder,
 .style-chooser .vs__dropdown-toggle,
 .style-chooser .vs__dropdown-menu {
-  background-color: #e2e4e5;
-  border: #5b738b 1px solid;
-  color: #5b738b;
+  background-color: var(--background-grey);
+  border: var(--grey-blue) 1px solid;
+  color: var(--grey-blue);
   font-weight: 500;
 }
 
 .vs__selected,
 .vs__dropdown-option {
-  color: #495e74;
+  color: var(--grey-blue);
 }
 
 .vs__dropdown-option--highlight {
-  background-color: #f8b153;
+  background-color: var(--light-orange);
 }
 
 .style-chooser .vs__clear,
 .style-chooser .vs__open-indicator {
-  fill: #5b738b;
+  fill: var(--grey-blue);
 }
 </style>

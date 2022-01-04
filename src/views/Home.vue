@@ -1,9 +1,9 @@
 <template>
-  <div class="home">
+  <div>
     <img alt="Exchange logo" src="../assets/exchange-logo.png" width="200px" />
     <CurrencyDropdown
       :value="this.$store.state.baseCurrency"
-      label="Base currency"
+      label="Select currency"
       @currencySelected="setBaseValue"
       :filterOutValue="this.$store.state.convertCurrency"
     />
@@ -20,7 +20,6 @@
 <script>
 import CurrencyDropdown from "@/components/CurrencyDropdown.vue";
 import InputWithConvertor from "@/components/InputWithConvertor.vue";
-// import store from "@/store";
 
 export default {
   name: "Home",
@@ -39,7 +38,6 @@ export default {
   },
   created() {
     this.$store.dispatch("fetchRates");
-    console.log("rendered");
   },
 };
 </script>
