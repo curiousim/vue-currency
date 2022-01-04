@@ -26,11 +26,14 @@ export default new Vuex.Store({
   },
   actions: {
     async fetchRates(context, currencyCode) {
-      const responseObj = await fetchExchangeRates(
-        currencyCode ?? context.state.baseCurrency
-      );
+      if (!this.state.rates.length) {
+        console.log("fetched");
+        const responseObj = await fetchExchangeRates(
+          currencyCode ?? context.state.baseCurrency
+        );
 
-      context.commit("setRates", responseObj.rates);
+        context.commit("setRates", responseObj.rates);
+      }
     },
   },
   modules: {},

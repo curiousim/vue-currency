@@ -27,7 +27,6 @@ export default {
   data() {
     return {
       listOfCurrencies: CURRENCY_DESCRIPTION,
-      rates: this.$store.state.rates,
     };
   },
   methods: {},
@@ -39,6 +38,12 @@ export default {
         ).name ?? ""
       );
     },
+    rates: function () {
+      return this.$store.state.rates;
+    },
+  },
+  created() {
+    this.$store.dispatch("fetchRates");
   },
 };
 </script>
@@ -70,7 +75,7 @@ export default {
   background: linear-gradient(
     var(--background-grey),
     rgba(255, 255, 255, 0.001)
-  ); /* transparent keyword is broken in Safari */
+  );
 }
 .overflow-scroll-gradient::after {
   content: "";
@@ -82,6 +87,6 @@ export default {
   background: linear-gradient(
     rgba(255, 255, 255, 0.001),
     var(--background-grey)
-  ); /* transparent keyword is broken in Safari */
+  );
 }
 </style>
