@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <img alt="Exchange logo" src="../assets/exchange-logo.png" width="200px" />
     <CurrencyDropdown
       :value="this.$store.state.baseCurrency"
@@ -14,7 +14,7 @@
       :filterOutValue="this.$store.state.baseCurrency"
     />
     <InputWithConvertor v-if="this.$store.state.convertCurrency" />
-  </div>
+  </main>
 </template>
 
 <script>
@@ -37,7 +37,9 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch("fetchRates");
+    if (!this.$store.state.rates) {
+      this.$store.dispatch("fetchRates");
+    }
   },
 };
 </script>

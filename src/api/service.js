@@ -1,7 +1,7 @@
-export const EXCHANGE_SERVICE_URL = "https://api.exchangerate.host/latest";
+export const EXCHANGE_SERVICE_URL = process.env.VUE_APP_BASE_URL;
 
 export const get = async (params) => {
-  // that would be an argument if had several endpoints
+  // url would be an argument if had several endpoints
   const url = new URL(EXCHANGE_SERVICE_URL);
   url.search = new URLSearchParams(params).toString();
 

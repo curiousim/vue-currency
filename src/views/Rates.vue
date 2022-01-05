@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <main>
     <h2 class="list-title">Rates for {{ baseRateName }}</h2>
     <div class="overflow-scroll-gradient">
-      <ul class="list-container">
+      <ul class="list-container" v-if="rates">
         <li v-for="currency in listOfCurrencies" v-bind:key="currency.code">
           <CurrencyListElement
             :name="currency.name"
@@ -12,12 +12,12 @@
         </li>
       </ul>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
 import CurrencyListElement from "../components/CurrencyListElement.vue";
-import { CURRENCY_DESCRIPTION } from "../util/translation";
+import { CURRENCY_DESCRIPTION } from "../description";
 
 export default {
   name: "Rates",
@@ -43,7 +43,9 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch("fetchRates");
+    if (!this.$store.state.rates) {
+      this.$store.dispatch("fetchRates");
+    }
   },
 };
 </script>

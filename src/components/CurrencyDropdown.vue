@@ -1,5 +1,5 @@
 <template>
-  <div class="dropdown-container">
+  <section class="dropdown-container">
     <label class="dropdown-label">{{ label }}</label>
     <VueSelect
       :value="value"
@@ -9,13 +9,13 @@
       class="style-chooser"
       :clearable="false"
     />
-  </div>
+  </section>
 </template>
 
 <script>
 import VueSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
-import { CURRENCY_DESCRIPTION } from "../util/translation";
+import { CURRENCY_DESCRIPTION } from "../description";
 
 export default {
   name: "CurrencyDropdown",
